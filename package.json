@@ -1,0 +1,49 @@
+{
+  "_from": "node-express-woologin",
+  "_id": "node-express-woologin@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-1KZE2HgHrYMq9bW5Js4Ih2BGqk3huaMuC7HrqQGGvVd9n+G8jVxMQFW6o77jNDFbLZrNwNOxf2QsEbx1VyjpwQ==",
+  "_location": "/node-express-woologin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "node-express-woologin",
+    "name": "node-express-woologin",
+    "escapedName": "node-express-woologin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-express-woologin/-/node-express-woologin-1.0.0.tgz",
+  "_shasum": "33bd73b00d99ec049d2c0f054607e19878aef41b",
+  "_spec": "node-express-woologin",
+  "_where": "/Users/hunkarpurtul/Documents/git-woo/woojson",
+  "author": {
+    "name": "Woo Media"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "cookie": "^0.4.0",
+    "request": "^2.88.2"
+  },
+  "deprecated": false,
+  "description": "Woo media user login helper.",
+  "keywords": [
+    "woomedia",
+    "woologin",
+    "user",
+    "login"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "node-express-woologin",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}
