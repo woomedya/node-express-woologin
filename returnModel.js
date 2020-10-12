@@ -1,15 +1,17 @@
 module.exports = (
-    { status = true, data = null, auth = true, message = "" } = {
+    { status = true, data = null, auth = true, message = "", role = true } = {
         status: true,
         data: null,
         auth: true,
-        message: ""
+        message: "",
+        role: true
     }
 ) => {
     return {
         status,
         auth,
         data,
-        message
+        message,
+        role
     };
 };
