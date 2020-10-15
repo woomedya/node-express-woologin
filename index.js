@@ -25,6 +25,7 @@ let verify = async function (req, verifyUrl) {
             }
         );
 
+        req.body.woouserdata = result && result.data;
         return !result || !result.auth ? false : { auth: true, role: result.role };
     } catch (err) {
         return false;
@@ -175,6 +176,18 @@ userRouter.post('/permissions', async (req, res) => {
 
 userRouter.post('/permissionlist', async (req, res) => {
     var result = await request(req, "role/listforclient");
+
+    return res.send(returnModel(result));
+});
+
+userRouter.post('/userlistforselect', async (req, res) => {
+    var result = await request(req, "user/listforclientselect");
+
+    return res.send(returnModel(result));
+});
+
+userRouter.post('/rolelistforselect', async (req, res) => {
+    var result = await request(req, "role/listforclientselect");
 
     return res.send(returnModel(result));
 });
