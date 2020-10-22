@@ -32,6 +32,24 @@ let verify = async function (req, verifyUrl) {
     }
 }
 
+let verifyMobile = async function (req, verifyUrl, publicKey) {
+    try {
+        let result = await woorequest.post(
+            loginUrl + verifyUrl,
+            req.body,
+            {
+                'public': publicKey,
+                'Cookie': cookie.serialize('jwt', req.cookies.jwt)
+            }
+        );
+
+        req.body.woouserdata = result && result.data;
+        return !result || !result.auth ? false : { auth: true, role: result.role };
+    } catch (err) {
+        return false;
+    }
+}
+
 let request = async function (req, reqUrl) {
     try {
         let result = await woorequest.post(
@@ -74,6 +92,30 @@ let auth = async function (req, res, next) {
                 data: {
                     redirectUrl: loginUrl + "woologin?application=" + applicationId
                 }
+            })
+        );
+    }
+}
+
+let authMobileUser = async function (req, res, next) {
+    try {
+        var result = await verifyMobile(req, "mobileuser/verifyapplication", req.headers.public);
+
+        if (result) {
+            next();
+        } else {
+            res.send(
+                returnModel({
+                    status: false,
+                    auth: false
+                })
+            );
+        }
+    } catch (error) {
+        res.send(
+            returnModel({
+                status: false,
+                auth: false,
             })
         );
     }
@@ -194,6 +236,7 @@ userRouter.post('/rolelistforselect', async (req, res) => {
 
 module.exports = {
     auth,
+    authMobileUser,
     init,
     userRouter,
     authForServer,
