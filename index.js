@@ -43,8 +43,8 @@ let verifyMobile = async function (req, verifyUrl, publicKey) {
             }
         );
 
-        req.body.woouserdata = result && result.data;
-        return !result || !result.auth ? false : { auth: true, role: result.role };
+        req.userId = result && result.data && result.data.userId;
+        return req.userId ? true : false;
     } catch (err) {
         return false;
     }
