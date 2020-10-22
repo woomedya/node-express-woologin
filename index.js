@@ -43,8 +43,8 @@ let verifyMobile = async function (req, verifyUrl, publicKey) {
             }
         );
 
-        req.userId = result && result.data && result.data.userId;
-        return req.userId ? true : false;
+        req.user = result && result.data;
+        return req.user && req.user.id ? true : false;
     } catch (err) {
         return false;
     }
