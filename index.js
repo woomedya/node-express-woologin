@@ -21,7 +21,7 @@ let verify = async function (req, verifyUrl) {
             req.body,
             {
                 'public-key': publicKey,
-                'Cookie': cookie.serialize('jwt', req.cookies.jwt)
+                'Cookie': cookie.serialize('jwt', req.cookies.jwt || req.headers.jwt)
             }
         );
 
@@ -39,7 +39,7 @@ let verifyMobile = async function (req, verifyUrl, publicKey) {
             req.body,
             {
                 'public': publicKey,
-                'Cookie': cookie.serialize('jwt', req.cookies.jwt)
+                'Cookie': cookie.serialize('jwt', req.cookies.jwt || req.headers.jwt)
             }
         );
 
