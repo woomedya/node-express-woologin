@@ -121,14 +121,16 @@ let authMobileUser = async function (req, res, next) {
     }
 }
 
-let authRole = (permissions) => {
+let authRole = (permissions, specificControl) => {
     return async function (req, res, next) {
         try {
             req.body.permissionIds = permissions;
             var result = await verify(req, "role/verify");
 
-            if (result && result.role) {
-                next();
+            if (result.auth && (specificControl || (result && result.role))) {
+                req.roleStatus = result && result.role;
+
+                return next();
             } else {
                 return res.send(
                     returnModel({
