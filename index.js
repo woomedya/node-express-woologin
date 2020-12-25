@@ -236,6 +236,10 @@ userRouter.post('/rolelistforselect', async (req, res) => {
     return res.send(returnModel(result));
 });
 
+userRouter.get('/assets/*', async (req, res) => {
+    return res.redirect(loginUrl + req.url.replace("/", ""));
+});
+
 module.exports = {
     auth,
     authMobileUser,
